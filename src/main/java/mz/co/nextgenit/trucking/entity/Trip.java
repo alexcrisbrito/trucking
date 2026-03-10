@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -19,8 +18,12 @@ public class Trip {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "request_id")
-    private Request request;
+    @JoinColumn(name = "company_client_id")
+    private CompanyClient companyClient;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "company_partner_id")
+    private CompanyPartner companyPartner;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "driver_id")
@@ -32,11 +35,21 @@ public class Trip {
 
     private String reference;
 
-    private LocalDateTime started_at;
+    private String startingPoint;
 
-    private LocalDateTime finished_at;
+    private String endingPoint;
 
-    public enum TripEndedReason {
-        CANCELLED, COMPLETED,
-    }
+    private long proposedPrice;
+
+    private long actualPrice;
+
+    private long weightKg;
+
+    private String dimensions;
+
+    private LocalDateTime startedAt;
+
+    private LocalDateTime endedAt;
+
+    private String status;
 }

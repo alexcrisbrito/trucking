@@ -9,6 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface TripRepository extends JpaRepository<Trip, UUID> {
-    Optional<Trip> findByReference(String reference);
     boolean existsByReference(String reference);
 }
